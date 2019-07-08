@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 
+import UserHeader from './UserHeader';
+
 class PostList extends Component {
   componentDidMount() {
     this.props.fetchPosts(); //calls the fetctPosts action creator.
@@ -15,6 +17,7 @@ class PostList extends Component {
             <div className="description">
               <h2>{post.title}</h2>
               <p>{post.body}</p>
+              <UserHeader userId={post.userId} />
            </div>
           </div>
         </div>
@@ -24,7 +27,7 @@ class PostList extends Component {
 
   render() {
     //console.log(this.props.posts);
-    return <div>{this.renderList()} </div>
+    return <div className="ui relaxed divided list">{this.renderList()} </div>
   }
 };
 
