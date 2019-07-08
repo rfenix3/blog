@@ -1,14 +1,16 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
 
-import { fetchUser } from '../actions';
+// fetchUser is no longer needed after refactor. Is is now inside another action creator.
+// import { fetchUser } from '../actions'; 
 
 class UserHeader extends Component {
-  componentDidMount() {
-    this.props.fetchUser(this.props.userId); 
+  // componentDidmount() to fetch users is no longer needed after refactor.
+  // componentDidMount() {
+  //   this.props.fetchUser(this.props.userId); 
     //fetctUser action creator gets one user object based on the userId,
     //then, runs userReducer dispatch to save the object in Redux state.
-  }
+  // }
 
   render() {
     // Replace...const user = this.props.users.find(user => user.id === this.props.userId);
@@ -31,6 +33,6 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default connect(
-  mapStateToProps,
-  {fetchUser}
+  mapStateToProps
+//  ,{fetchUser}
 )(UserHeader);
