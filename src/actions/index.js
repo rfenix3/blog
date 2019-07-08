@@ -6,6 +6,7 @@ export const fetchPostsAndUsers = () => async (dispatch, getState)  => {
   console.log(getState().posts);
   console.log('fetched posts!');
   // use lodash list of unique userId's using lodash's map version.
+  // since we are interested only for the userId's in posts, we add that argument in the _.map.
   const userIds = _.uniq(_.map(getState().posts, 'userId'));
   console.log(userIds);
   // We then iterate over the list of id and every user id, we fetch fetchUser action creator.
@@ -13,6 +14,13 @@ export const fetchPostsAndUsers = () => async (dispatch, getState)  => {
   // no need for await keyword since there will be no codes that will follow
   // that will need info from running dispatch(fetchUser(id)).
   // The dispatch(fetchUser(id)) will then fill-in state.users with user objects.
+
+  // We can also use lodash's chain and value() method to refactor above code.
+  // _.chain(getState().posts)
+  //   .map('userId')
+  //   .uniq()
+  //   .forEach(id => dispatch(fetchUser(id)))
+  //   .value()
 }
 
 // for fetching with axios, ensure the 'async' and 'await' commands are included.
